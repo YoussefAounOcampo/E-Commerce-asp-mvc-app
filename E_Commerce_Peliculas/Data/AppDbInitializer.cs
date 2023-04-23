@@ -188,7 +188,7 @@ namespace E_Commerce_Peliculas.Data
                             Name ="Scoob",
                             Description = "This is the Scoob Movie Description",
                             Price= 39.50,
-                            ImageURL = "http://dotnethow.net/images/movies/movie-3.jpeg",
+                            ImageURL = "https://dotnethow.net/images/movies/movie-7.jpeg",
                             StartDate = DateTime.Now.AddDays(-10),
                             EndDate = DateTime.Now.AddDays(-2),
                             CinemaId=3,

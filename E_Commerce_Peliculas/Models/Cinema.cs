@@ -6,8 +6,13 @@ namespace E_Commerce_Peliculas.Models
     {
         [Key]
         public int Id { get; set; }
+        [Display (Name ="Logo Cine")]
         public string Logo { get; set; }
+        [Display(Name = "Nombre Cine")]
+
         public string Name { get; set; }
+        [Display(Name = "Descripción")]
+
         public string Description { get; set; }
 
         //Relaciones
