@@ -1,8 +1,8 @@
-﻿namespace E_Commerce_Peliculas.Data
+﻿namespace E_Commerce_Peliculas.Data.Enums
 {
     public enum MovieCategory
     {
-        Accion=1,
+        Accion = 1,
         Comedia,
         Drama,
         Documentary

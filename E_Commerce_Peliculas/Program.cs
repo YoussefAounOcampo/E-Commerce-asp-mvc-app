@@ -1,4 +1,9 @@
+using E_Commerce_Peliculas.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//DbContext configuraton
+builder.Services.AddDbContext<AppDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
