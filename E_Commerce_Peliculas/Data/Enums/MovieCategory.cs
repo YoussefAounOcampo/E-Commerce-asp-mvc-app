@@ -5,6 +5,8 @@
         Accion = 1,
         Comedia,
         Drama,
-        Documentary
+        Documentary,
+        Horror,
+        Cartoon
     }
 }
