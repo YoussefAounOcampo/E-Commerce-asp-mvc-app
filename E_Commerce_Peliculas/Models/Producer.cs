@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using E_Commerce_Peliculas.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_Commerce_Peliculas.Models
 {
-    public class Producer
+    public class Producer : IEntityBaseRepository
     {
         [Key]
         public int Id { get; set; }
@@ -15,6 +16,6 @@ namespace E_Commerce_Peliculas.Models
         public string Bio { get; set; }
 
         //Relaciones
-        public List<Movie> Movies { get; set; }
+        public List<Movie>? Movies { get; set; }
     }
 }
