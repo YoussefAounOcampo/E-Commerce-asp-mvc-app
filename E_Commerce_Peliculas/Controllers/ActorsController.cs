@@ -28,24 +28,28 @@ namespace E_Commerce_Peliculas.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
         public async Task<IActionResult> Create([Bind("ProfilePictureURL,FullName,Bio")] Actor actor)
         {
             Debug.WriteLine("ProfilePictureURL: " + actor.ProfilePictureURL);
             Debug.WriteLine("FullName: " + actor.FullName);
             Debug.WriteLine("Bio: " + actor.Bio);
 
-            
-                await _service.AddAsync(actor);
-                return RedirectToAction(nameof(Index));
-            
+            if (!ModelState.IsValid)
+            {
+                //foreach (var key in ModelState.Keys)
+                //{
+                //    var errors = ModelState[key].Errors;
+                //    foreach (var error in errors)
+                //    {
+                //        Debug.WriteLine($"Error en la propiedad {key}: {error.ErrorMessage}");
+                //    }
+                //}
+                return View(actor);
+            }
+            await _service.AddAsync(actor);
+            return RedirectToAction(nameof(Index));
 
-            // Volver a la vista con el modelo y los mensajes de error de validación
-           
         }
-
-
-
 
 
         //GEt_ Actors details 1
@@ -55,12 +59,74 @@ namespace E_Commerce_Peliculas.Controllers
             var actorDetails = await _service.GetByIdAsync(id);
             if (actorDetails == null)
             {
-                return View("Empty");
+                return View("NotFound");
             }
             else
             {
                 return View(actorDetails);
             }
+        }
+
+
+        //Get: Actors/Create
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null)
+            {
+                return View("NotFound");
+            }
+            else
+            {
+                return View(actorDetails);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProfilePictureURL,FullName,Bio")] Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+               
+                return View(actor);
+            }
+            await _service.UpdateAsync(id, actor);
+            return RedirectToAction(nameof(Index));
+
+        }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null)
+            {
+                return View("NotFound");
+            }
+            else
+            {
+                return View(actorDetails);
+            }
+
+            return View();
+        }
+
+        [HttpPost, ActionName("Delete")] //Para que el nombre sea igual Delete.
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var actorDetails = await _service.GetByIdAsync(id);
+            if (actorDetails == null)
+            {
+                return View("NotFound");
+            }
+            else
+            {
+                await _service.DeleteAsync(id);
+            }
+           
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }

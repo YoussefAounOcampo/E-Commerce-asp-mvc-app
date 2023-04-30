@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using E_Commerce_Peliculas.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_Commerce_Peliculas.Models
 {
-    public class Actor
+    public class Actor : IEntityBaseRepository
     {
         [Key]
         public int Id { get; set; }
@@ -18,10 +19,9 @@ namespace E_Commerce_Peliculas.Models
 
         [Display(Name = "Biography")]
         [Required(ErrorMessage = "La biografía es obligatoria")]
-
         public string Bio { get; set; }
 
         //Relaciones
-        public List<Actor_Movie> Actors_Movies { get; set; }
+        public List<Actor_Movie>? Actors_Movies { get; set; }
     }
 }
